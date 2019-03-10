@@ -2,48 +2,64 @@
   height: 100%;
   padding: 0 30px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: [header] 1fr [stats] 2fr [options] .5fr [list] 4fr;
+  grid-template-columns: 40ft 30fr 30fr;
+  grid-template-rows: 1fr .5fr 1fr 4fr;
+  grid-gap: 20px 20px;
+
+  &>* {
+    padding: 30px;
+    border: 1px solid lightgray;
+  }
 
   .header {
     grid-column: 1 / 4;
-    grid-row: header;
-    background-color: lightblue;
+    grid-row: 1;
+    margin: auto 0;
+
+    .title {
+      text-indent: 30px;
+      border-bottom: 1px solid lightgray;
+    }
   }
 
   .cash {
     grid-column: 1;
-    grid-row: stats;
-    background-color: lightcoral;
-  }
+    grid-row: 2 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 
-  .cut {
-    grid-column: 2;
-    grid-row: stats;
-    background-color: lightgreen;
+    .cash-display {
+      font-size: 24px;
+
+      &>span {
+        position: relative;
+        left: 50px;
+      }
+    }
   }
 
   .chart {
-    grid-column: 3;
-    grid-row: stats;
+    grid-column: 1;
+    grid-row: 4;
     background-color: lightpink;
   }
 
   .filter {
-    grid-column: 1;
-    grid-row: options;
+    grid-column: 2;
+    grid-row: 2;
     background-color: lightseagreen;
   }
 
   .add-parking {
     grid-column: 3;
-    grid-row: options;
+    grid-row: 2;
     background-color: lightcyan;
   }
 
   .parking-list {
-    grid-column: 1 / 4;
-    grid-row: list;
+    grid-column: 2 / 4;
+    grid-row: 3 / 5;
     background-color: lightyellow;
   }
 }

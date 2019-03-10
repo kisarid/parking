@@ -1,14 +1,23 @@
 <div class="container">
 
-  <div class="header">Hello Bálint</div>
+  <div class="header">
+    <div class="title">Üdvözlünk, {{ attendant.name }}!</div>
+  </div>
 
-  <div class="cash">Kassza</div>
-  <div class="cut">Jutalék</div>
+  <div class="cash">
+    <div class="cash-display">Kassza: <span>{{ cash | number }} Ft</span></div>
+    <div class="cash-display">Jutalék: <span>{{ attendant.cut }} Ft</span></div>
+    <div class="cash-display">Jelenleg {{ numberOfFilledSpots }} autó parkol nálunk (szabad helyek száma: {{ 10 -
+      numberOfFilledSpots }})</div>
+  </div>
+
   <div class="chart">Grafikon</div>
 
   <div class="filter">Szűrő</div>
   <div class="add-parking">Hozzáadás</div>
 
-  <div class="parking-list">Parkolások listája</div>
+  <div class="parking-list">
+    <app-parking-table *ngIf="parkings" [parkings]="parkings"></app-parking-table>
+  </div>
 
 </div>
