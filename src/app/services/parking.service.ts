@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class ParkingService {
   attendants: string[];
+  activeAttendant: string;
 
   constructor() {
     this.attendants = ["Attila", "Bálint", "Dénes", "Károly", "Tamás"];
@@ -14,5 +15,9 @@ export class ParkingService {
     return new Promise<string[]>((resolve, reject) => {
       resolve(this.attendants);
     });
+  }
+
+  setActiveAttendant(a: string): void {
+    this.activeAttendant = a;
   }
 }

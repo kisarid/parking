@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   loginWithSelectedUser(): void {
     if (this.selectedUser) {
+      this.parkingService.setActiveAttendant(this.selectedUser);
       this.router.navigateByUrl("dashboard");
     }
   }

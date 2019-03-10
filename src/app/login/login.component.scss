@@ -1,13 +1,17 @@
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .login-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 200px;
-  max-width: 500px;
-  margin: auto;
-  margin-top: 200px;
+  min-height: 150px;
+  min-width: 400px;
   padding: 20px;
-  justify-self: center;
   border: 1px solid lightgray;
   border-radius: 5px;
   box-shadow: 3px 3px 10px lightgray;
@@ -18,6 +22,6 @@
 }
 
 mat-form-field {
-  width: 50%;
+  width: 60%;
   margin-bottom: auto;
 }
