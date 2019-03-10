@@ -5,7 +5,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatFormFieldModule,
   MatSelectModule,
-  MatButtonModule
+  MatButtonModule,
+  MatTableModule
 } from "@angular/material";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -17,7 +18,7 @@ import { ParkingTableComponent } from "./dashboard/parking-table/parking-table.c
 import { AddParkingDialogComponent } from "./dashboard/add-parking-dialog/add-parking-dialog.component";
 import { ViewParkingDialogComponent } from "./dashboard/view-parking-dialog/view-parking-dialog.component";
 import { PlateQrComponent } from "./dashboard/view-parking-dialog/plate-qr/plate-qr.component";
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
