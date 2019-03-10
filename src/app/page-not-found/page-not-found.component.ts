@@ -13,10 +13,6 @@ export class PageNotFoundComponent implements OnInit {
   ngOnInit() {}
 
   goBack(): void {
-    if (this.parkingService.activeAttendant) {
-      this.router.navigateByUrl("dashboard");
-    } else {
-      this.router.navigateByUrl("login");
-    }
+    this.router.navigateByUrl("login");
   }
 }

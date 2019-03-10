@@ -2,8 +2,9 @@
   <div class="login-box">
     <div class="title">Üdvözöllek a VIP Parkolóban!</div>
     <mat-form-field>
-      <mat-select id="user-select" [(value)]="selectedUser" placeholder="Kérlek, válassz felhasználót!">
-        <mat-option *ngFor="let attendant of attendants" value={{attendant}}>{{ attendant }}</mat-option>
+      <mat-select id="user-select" placeholder="Kérlek, válassz felhasználót!">
+        <mat-option *ngFor="let attendant of attendants" value="attendant.name" (click)="selectAttendant(attendant)">{{
+          attendant.name }}</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-stroked-button (click)="loginWithSelectedUser()">Belépés</button>
