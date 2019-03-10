@@ -4,5 +4,15 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class ParkingService {
-  constructor() {}
+  attendants: string[];
+
+  constructor() {
+    this.attendants = ["Attila", "Bálint", "Dénes", "Károly", "Tamás"];
+  }
+
+  getAttendantList(): Promise<string[]> {
+    return new Promise<string[]>((resolve, reject) => {
+      resolve(this.attendants);
+    });
+  }
 }
