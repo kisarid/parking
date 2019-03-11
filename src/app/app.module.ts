@@ -6,8 +6,10 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatButtonModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule
 } from "@angular/material";
+import { NgxQRCodeModule } from "ngx-qrcode2";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -39,9 +41,12 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    NgxQRCodeModule
   ],
   providers: [],
+  entryComponents: [ViewParkingDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
