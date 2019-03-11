@@ -12,7 +12,7 @@
     <tr *ngFor="let p of parkings" (click)="openDetailsDialog(p)">
       <td>{{ p.name }}</td>
       <td>{{ p.email }}</td>
-      <td>{{ p.date | date }}</td>
+      <td>{{ p.date | date:"yyyy-mm-dd HH:mm:ss" }}</td>
       <td>{{ p.plate }}</td>
       <td><button>Távozás</button></td>
     </tr>

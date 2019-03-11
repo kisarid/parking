@@ -1,5 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
+import { registerLocaleData } from "@angular/common";
+import localeHu from "@angular/common/locales/hu";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
@@ -10,6 +12,7 @@ import {
   MatDialogModule
 } from "@angular/material";
 import { NgxQRCodeModule } from "ngx-qrcode2";
+import { NgxPrintModule } from "ngx-print";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -21,6 +24,8 @@ import { AddParkingDialogComponent } from "./dashboard/add-parking-dialog/add-pa
 import { ViewParkingDialogComponent } from "./dashboard/view-parking-dialog/view-parking-dialog.component";
 import { PlateQrComponent } from "./dashboard/view-parking-dialog/plate-qr/plate-qr.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+
+registerLocaleData(localeHu);
 
 @NgModule({
   declarations: [
@@ -43,9 +48,10 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    NgxPrintModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: "hu" }],
   entryComponents: [ViewParkingDialogComponent],
   bootstrap: [AppComponent]
 })
