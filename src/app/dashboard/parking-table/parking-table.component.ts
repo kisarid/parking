@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, Input } from "@angular/core";
-import { MatSort, MatTableDataSource } from "@angular/material";
+import { Component, OnInit, Input, Inject } from "@angular/core";
+import { MatDialog } from "@angular/material";
 
 import { Parking } from "src/app/interfaces/parking";
+import { ViewParkingDialogComponent } from "../view-parking-dialog/view-parking-dialog.component";
 
 @Component({
   selector: "app-parking-table",
@@ -10,21 +11,30 @@ import { Parking } from "src/app/interfaces/parking";
 })
 export class ParkingTableComponent implements OnInit {
   @Input() parkings: Parking[];
-  displayedColumns: string[] = ["name", "email", "date", "plate", "options"];
-  dataSource: MatTableDataSource<Parking>;
-  @ViewChild(MatSort) sort: MatSort;
+  sortedBy: string;
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
-  ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.parkings);
+  ngOnInit() {}
+
+  sort(by: string) {
+    if (this.sortedBy === by) {
+      this.parkings.sort((a, b) => {
+        return a[by] > b[by] ? -1 : a[by] < b[by] ? 1 : 0;
+      });
+      this.sortedBy = "";
+    } else {
+      this.parkings.sort((a, b) => {
+        return a[by] > b[by] ? 1 : a[by] < b[by] ? -1 : 0;
+      });
+      this.sortedBy = by;
+    }
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
-
-  filterParking(value: string) {
-    this.dataSource.filter = value.trim().toLowerCase();
+  openDetailsDialog(selectedParking: Parking): void {
+    const dialogRef = this.dialog.open(ViewParkingDialogComponent, {
+      width: "250px",
+      data: selectedParking
+    });
   }
 }

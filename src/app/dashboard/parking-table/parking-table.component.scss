@@ -2,12 +2,15 @@ table {
   width: 100%;
 }
 
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
+th {
+  border-bottom: 1px solid lightgray;
+  width: 20%;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-td,
-th {
-  width: 25%;
+td {
+  text-align: center;
 }
