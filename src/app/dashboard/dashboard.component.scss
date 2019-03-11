@@ -48,7 +48,23 @@
   .filter {
     grid-column: 2;
     grid-row: 2;
-    background-color: lightseagreen;
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 38%;
+      left: 6.5%;
+      color: #44585a8c;
+    }
+
+    input {
+      border: none;
+      outline: none;
+      width: 100%;
+      border-bottom: 1px solid lightgray;
+      font-size: 18px;
+      text-indent: 30px;
+    }
   }
 
   .add-parking {
@@ -60,6 +76,5 @@
   .parking-list {
     grid-column: 2 / 4;
     grid-row: 3 / 5;
-    background-color: lightyellow;
   }
 }

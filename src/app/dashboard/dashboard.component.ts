@@ -3,7 +3,9 @@ import {
   OnInit,
   OnChanges,
   SimpleChanges,
-  Output
+  Output,
+  ViewChild,
+  ElementRef
 } from "@angular/core";
 import { Router } from "@angular/router";
 
@@ -20,6 +22,8 @@ export class DashboardComponent implements OnInit, OnChanges {
   cash: number;
   numberOfFilledSpots: number;
   @Output() parkings: Parking[];
+  filteredParkings: Parking[];
+  @ViewChild("filter") filter: ElementRef;
 
   constructor(private parkingService: ParkingService, private router: Router) {}
 
@@ -32,6 +36,7 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.parkingService.loadDashboardData().then(() => {
       this.cash = this.parkingService.cash;
       this.parkings = this.parkingService.parkings;
+      this.filteredParkings = this.parkings.slice(0);
       this.calculateSpots();
     });
     this.attendant = { name: "Dénes", cut: 0 };
@@ -39,6 +44,26 @@ export class DashboardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.calculateSpots();
+  }
+
+  filterParkings(): void {
+    const value = this.filter.nativeElement.value.trim().toLowerCase();
+    this.filteredParkings = this.parkings.filter(p => {
+      return (
+        p.name
+          .trim()
+          .toLowerCase()
+          .indexOf(value) > -1 ||
+        p.email
+          .trim()
+          .toLowerCase()
+          .indexOf(value) > -1 ||
+        p.plate
+          .trim()
+          .toLowerCase()
+          .indexOf(value) > -1
+      );
+    });
   }
 
   calculateSpots(): void {

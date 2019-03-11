@@ -13,11 +13,15 @@
 
   <div class="chart">Grafikon</div>
 
-  <div class="filter">Szűrő</div>
+  <div class="filter">
+    <i class="fas fa-search"></i>
+    <input #filter type="text" placeholder="Szűrés" (keyup)="filterParkings()">
+  </div>
+
   <div class="add-parking">Hozzáadás</div>
 
   <div class="parking-list">
-    <app-parking-table *ngIf="parkings" [parkings]="parkings"></app-parking-table>
+    <app-parking-table *ngIf="parkings" [parkings]="filteredParkings"></app-parking-table>
   </div>
 
 </div>
