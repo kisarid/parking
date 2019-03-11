@@ -1,3 +1,11 @@
-<p>
-  view-parking-dialog works!
-</p>
+<h1 mat-dialog-title>Részletek</h1>
+<div mat-dialog-content>
+  <div class="name">{{data.name}}</div>
+  <div class="email">{{data.email}}</div>
+  <div class="date">{{data.date}}</div>
+  <div class="plate">{{data.plate}}</div>
+  <app-plate-qr [value]="data.plate"></app-plate-qr>
+</div>
+<div mat-dialog-actions>
+  <button mat-button cdkFocusInitial (click)="closeDialog()">Ok</button>
+</div>
