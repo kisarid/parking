@@ -7,8 +7,7 @@
   <div class="cash">
     <div class="cash-display">Kassza: <span>{{ cash | number }} Ft</span></div>
     <div class="cash-display">Jutalék: <span>{{ attendant.cut }} Ft</span></div>
-    <div class="cash-display">Jelenleg {{ numberOfFilledSpots }} autó parkol nálunk (szabad helyek száma: {{ 10 -
-      numberOfFilledSpots }})</div>
+    <div class="cash-display">Szabad helyek száma: {{ 10 - numberOfFilledSpots }}</div>
   </div>
 
   <div class="chart">Grafikon</div>
@@ -18,10 +17,13 @@
     <input #filter type="text" placeholder="Szűrés" (keyup)="filterParkings()">
   </div>
 
-  <div class="add-parking">Hozzáadás</div>
+  <div class="add-parking">
+    <div><button (click)="openAddParkingDialog()">Hozzáadás</button></div>
+  </div>
 
   <div class="parking-list">
-    <app-parking-table *ngIf="parkings" [parkings]="filteredParkings"></app-parking-table>
+    <app-parking-table *ngIf="parkings" [parkings]="filteredParkings" [noCarsInLot]="parkings.length === 0"
+      (leaveEmitter)="leaveCar($event)"></app-parking-table>
   </div>
 
 </div>

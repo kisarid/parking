@@ -1,3 +1,41 @@
-<p>
-  add-parking-dialog works!
-</p>
+<div>
+  <h1 mat-dialog-title>Új parkolás rögzítése</h1>
+
+  <div mat-dialog-content>
+    <mat-form-field appearance="standard">
+      <input [formControl]="nameValidator" matInput placeholder="Név">
+      <mat-error *ngIf="nameValidator.invalid">{{ getNameErrorMessage() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <input [formControl]="emailValidator" matInput placeholder="Email">
+      <mat-error *ngIf="emailValidator.invalid">{{ getEmailErrorMessage() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <input placeholder="Válassz dátumot" [max]="maxDate" [matDatepicker]="datepicker" [value]="maxDate" readonly
+        matInput>
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+
+    <ng-container>
+      <mat-form-field appearance="standard">
+        <input placeholder="Válassz időpontot" [ngxTimepicker]="timepicker" [max]="maxDate" [format]="24" [value]="maxDate"
+          readonly matInput>
+        <ngx-material-timepicker-toggle matSuffix [for]="timepicker"></ngx-material-timepicker-toggle>
+        <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+      </mat-form-field>
+    </ng-container>
+
+    <mat-form-field appearance="standard">
+      <input #plateInput [formControl]="plateValidator" matInput placeholder="Rendszám" (input)="toUpperCase()">
+      <mat-error *ngIf="plateValidator.invalid">{{ getPlateErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Mégse</button>
+    <button mat-button (click)="addParking()">Hozzáadás</button>
+  </div>
+</div>
