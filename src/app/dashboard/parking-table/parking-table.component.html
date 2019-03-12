@@ -14,7 +14,7 @@
       <td (click)="openDetailsDialog(p)">{{ p.email }}</td>
       <td (click)="openDetailsDialog(p)">{{ p.date | date:"yyyy-MM-dd HH:mm:ss" }}</td>
       <td (click)="openDetailsDialog(p)">{{ p.plate }}</td>
-      <td><button (click)="leaveCar(p)">Távozás</button></td>
+      <td><button mat-stroked-button (click)="leaveCar(p)">Távozás</button></td>
     </tr>
     <tr *ngIf="noCarsInLot">
       <td colspan=5>Jelenleg üres a parkoló.</td>

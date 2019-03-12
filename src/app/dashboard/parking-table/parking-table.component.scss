@@ -1,6 +1,12 @@
+@import "src/variables";
+
 table {
   width: 100%;
   border-collapse: collapse;
+}
+
+thead {
+  background-color: $outer-color;
 }
 
 th {
@@ -8,24 +14,38 @@ th {
   width: 20%;
   font-size: 20px;
   margin-bottom: 5px;
+  padding: 10px;
 
   &:hover {
-    cursor: default;
+    cursor: pointer;
+  }
+
+  &:first-child {
+    border-radius: 8px 0 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 8px 0 0;
   }
 }
 
 tbody {
+  border: 1px solid lightgray;
 
   tr:hover {
-    background-color: darkgray;
+    background-color: rgba(174, 210, 117, 0.6);
     transition: ease .3s;
     cursor: default;
   }
 }
 
 td {
-  padding: 20px 0;
+  padding: 10px 0;
   text-align: center;
+
+  button {
+    background-color: $inner-color;
+  }
 
   &:first-child {
     border-radius: 8px 0 0 8px;

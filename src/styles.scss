@@ -1,10 +1,12 @@
 $fa-font-path: 'assets/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
+@import 'variables';
 
 html,
 body {
   height: 100%;
+  background-color: $inner-color;
 }
 
 body {

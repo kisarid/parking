@@ -37,7 +37,7 @@ export class ParkingTableComponent implements OnInit {
 
   openDetailsDialog(selectedParking: Parking): void {
     this.dialog.open(ViewParkingDialogComponent, {
-      width: "250px",
+      width: "300px",
       data: selectedParking
     });
   }
