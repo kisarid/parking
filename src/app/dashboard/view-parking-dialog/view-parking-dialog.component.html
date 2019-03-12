@@ -1,14 +1,20 @@
-<div id="printable-card">
+<div id="card">
   <h1 mat-dialog-title>Parkolókártya</h1>
-  <div mat-dialog-content>
-    <div class="name">{{ data.name }}</div>
-    <div class="email">{{ data.email }}</div>
-    <div class="date">{{ data.date | date:"yyyy-MM-dd HH:mm:ss" }}</div>
-    <div class="plate">{{ data.plate }}</div>
+  <div mat-dialog-content id="to-print">
+    <div class="info">
+      <div id="name">Név</div>
+      <div id="email">Email</div>
+      <div id="date">Érkezés</div>
+      <div id="plate">Rendszám</div>
+      <div class="name">{{ data.name }}</div>
+      <div class="email">{{ data.email }}</div>
+      <div class="date">{{ data.date | date:"yyyy-MM-dd HH:mm:ss" }}</div>
+      <div class="plate">{{ data.plate }}</div>
+    </div>
     <app-plate-qr [value]="data.plate"></app-plate-qr>
   </div>
   <div mat-dialog-actions>
-    <button mat-button ngxPrint printSectionId="printable-card" printTitle="Parkolókártya {{ data.name }} részére - {{ data.date | date }}">Nyomtatás</button>
+    <button mat-button ngxPrint printSectionId="to-print" printTitle="Parkolókártya {{ data.name }} részére - {{ data.date | date }}">Nyomtatás</button>
     <button mat-button cdkFocusInitial (click)="closeDialog()">Ok</button>
   </div>
 </div>
