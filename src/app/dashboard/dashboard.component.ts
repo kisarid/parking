@@ -6,11 +6,13 @@ import {
   ElementRef
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { MatDialog } from "@angular/material";
+import { MatDialog, MatSnackBar } from "@angular/material";
 
 import { ParkingService } from "../services/parking.service";
 import { Attendant, Parking } from "../interfaces/parking";
 import { AddParkingDialogComponent } from "./add-parking-dialog/add-parking-dialog.component";
+import { duration } from "moment";
+import { ViewParkingDialogComponent } from "./view-parking-dialog/view-parking-dialog.component";
 
 @Component({
   selector: "app-dashboard",
@@ -28,7 +30,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private parkingService: ParkingService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -76,12 +79,39 @@ export class DashboardComponent implements OnInit {
     this.filterParkings();
   }
 
-  leaveCar(p): void {
+  leaveCar(p: Parking): void {
     this.parkingService.leave(p);
+    this.refreshData();
+    this.snackBar.open("A jármű sikeresen távozott.", "Bezárás", {
+      duration: 3000
+    });
+  }
+
+  addCar(p: Parking): void {
+    this.parkingService.add(p);
     this.refreshData();
   }
 
   openAddParkingDialog(): void {
-    this.dialog.open(AddParkingDialogComponent, { width: "400px" });
+    if (this.numberOfFilledSpots >= 10) {
+      this.snackBar.open("Nincs több hely a parkolóban.", "Bezárás", {
+        duration: 3000
+      });
+      return;
+    }
+
+    const parkingDialog = this.dialog.open(AddParkingDialogComponent, {
+      width: "400px",
+      autoFocus: false
+    });
+    parkingDialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.addCar(result);
+        this.dialog.open(ViewParkingDialogComponent, { data: result });
+        this.snackBar.open("Parkolás hozzáadva.", "Bezárás", {
+          duration: 3000
+        });
+      }
+    });
   }
 }

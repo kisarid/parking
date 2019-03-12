@@ -4,21 +4,32 @@
     <div class="title">Üdvözlünk, {{ attendant.name }}!</div>
   </div>
 
-  <div class="cash">
-    <div class="cash-display">Kassza: <span>{{ cash | number }} Ft</span></div>
-    <div class="cash-display">Jutalék: <span>{{ attendant.cut }} Ft</span></div>
-    <div class="cash-display">Szabad helyek száma: {{ 10 - numberOfFilledSpots }}</div>
+  <div class="info-header sub-header">
+    <div class="cash-display">Kassza</div>
+    <div class="cut-display">Jutalék</div>
+    <div class="lot-display">Szabad helyek száma</div>
+  </div>
+  <div class="info">
+    <div class=cash>{{ cash | number }} Ft</div>
+    <div class="cut">{{ attendant.cut }} Ft</div>
+    <div class="lot">{{ 10 - numberOfFilledSpots }}</div>
   </div>
 
-  <div class="chart">Grafikon</div>
+  <div class="chart-header sub-header">
+    <div>Forgalmi statisztikák</div>
+  </div>
+  <div class="chart"></div>
 
   <div class="filter">
-    <i class="fas fa-search"></i>
-    <input #filter type="text" placeholder="Szűrés" (keyup)="filterParkings()">
+    <span>
+      <i class="fas fa-search"></i>
+      <input #filter type="text" placeholder="Keresés" (keyup)="filterParkings()">
+    </span>
   </div>
 
   <div class="add-parking">
-    <div><button (click)="openAddParkingDialog()">Hozzáadás</button></div>
+    <button mat-stroked-button (click)="openAddParkingDialog()"><span><i class="fas fa-plus-circle"></i>Új parkolás
+        rögzítése</span></button>
   </div>
 
   <div class="parking-list">

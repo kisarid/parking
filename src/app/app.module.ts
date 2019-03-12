@@ -13,7 +13,8 @@ import {
   MatTableModule,
   MatDialogModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSnackBarModule
 } from "@angular/material";
 import { NgxQRCodeModule } from "ngx-qrcode2";
 import { NgxPrintModule } from "ngx-print";
@@ -60,6 +61,7 @@ registerLocaleData(localeHu);
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
     NgxMaterialTimepickerModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: "hu" }],
