@@ -1,0 +1,23 @@
+mat-form-field {
+  width: 100%;
+
+  input {
+    cursor: default;
+  }
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+ngx-material-timepicker-toggle {
+  button {
+    height: 24px;
+    width: 24px;
+  }
+
+  svg {
+    fill-opacity: .54;
+  }
+}

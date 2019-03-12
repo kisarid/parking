@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { MatDialogRef } from "@angular/material";
 import { FormControl, Validators } from "@angular/forms";
+import { MatDialogRef } from "@angular/material";
+
+import { Parking } from "src/app/interfaces/parking";
 
 @Component({
   selector: "app-add-parking-dialog",
@@ -8,6 +10,12 @@ import { FormControl, Validators } from "@angular/forms";
   styleUrls: ["./add-parking-dialog.component.scss"]
 })
 export class AddParkingDialogComponent implements OnInit {
+  @ViewChild("name") name: ElementRef;
+  @ViewChild("email") email: ElementRef;
+  @ViewChild("date") date: ElementRef;
+  @ViewChild("time") time: ElementRef;
+  @ViewChild("plate") plate: ElementRef;
+
   maxNameLength = 100;
   nameValidator = new FormControl("", [
     Validators.required,
@@ -24,7 +32,6 @@ export class AddParkingDialogComponent implements OnInit {
 
   maxDate = new Date(Date.now());
 
-  @ViewChild("plateInput") plateInput: ElementRef;
   validPlatePattern = /^((\w{3}-\d{3})|(\w{4}-\d{2})|(\w{5}-\d{1}))$/;
   plateValidator = new FormControl("", [
     Validators.required,
@@ -60,12 +67,56 @@ export class AddParkingDialogComponent implements OnInit {
   }
 
   toUpperCase(): void {
-    this.plateInput.nativeElement.value = this.plateInput.nativeElement.value.toUpperCase();
+    this.plate.nativeElement.value = this.plate.nativeElement.value.toUpperCase();
   }
 
-  addParking(): void {}
+  checkAll(): boolean {
+    this.nameValidator.markAsTouched();
+    this.emailValidator.markAsTouched();
+    this.plateValidator.markAsTouched();
 
-  closeDialog(): void {
-    this.dialogRef.close();
+    return (
+      this.nameValidator.valid &&
+      this.emailValidator.valid &&
+      this.plateValidator.valid
+    );
+  }
+
+  addParking(): void {
+    if (this.checkAll()) {
+      this.closeDialog(this.buildNewParking());
+    }
+  }
+
+  private buildNewParking(): Parking {
+    const newParking: Parking = {
+      id: null,
+      name: this.name.nativeElement.value,
+      email: this.email.nativeElement.value,
+      date: this.buildDateTime(),
+      plate: this.plate.nativeElement.value
+    };
+
+    return newParking;
+  }
+
+  private buildDateTime(): Date {
+    const d = Date.parse(this.date.nativeElement.value);
+    const t =
+      Number.parseFloat(this.time.nativeElement.value.substr(0, 2)) *
+        60 *
+        60 *
+        1000 +
+      Number.parseFloat(this.time.nativeElement.value.substr(3, 2)) * 60 * 1000;
+
+    return new Date(d + t);
+  }
+
+  closeDialog(p?: Parking): void {
+    if (p) {
+      this.dialogRef.close(p);
+    } else {
+      this.dialogRef.close();
+    }
   }
 }

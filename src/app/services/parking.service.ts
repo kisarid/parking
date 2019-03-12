@@ -83,6 +83,10 @@ export class ParkingService {
     return index;
   }
 
+  add(p: Parking): void {
+    this.parkings.push(p);
+  }
+
   leave(p: Parking): void {
     const index = this.getParkingIndexById(p.id);
     if (index > -1) {
