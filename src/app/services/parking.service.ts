@@ -11,6 +11,8 @@ export class ParkingService {
   activeAttendant: Attendant;
   cash: number;
   parkings: Parking[];
+  hourlyFee = 500;
+  cutRate = 0.1;
 
   constructor(private http: HttpService) {}
 
@@ -69,5 +71,36 @@ export class ParkingService {
 
   setActiveAttendant(newAttendant: Attendant): void {
     this.activeAttendant = newAttendant;
+  }
+
+  getParkingIndexById(id: number): number {
+    let index = -1;
+    this.parkings.forEach((e, i) => {
+      if (e.id === id) {
+        index = i;
+      }
+    });
+    return index;
+  }
+
+  leave(p: Parking): void {
+    const index = this.getParkingIndexById(p.id);
+    if (index > -1) {
+      const fee = this.calculateFee(p);
+      const cut = this.calculateCut(fee);
+      this.cash += fee;
+      this.activeAttendant.cut += cut;
+      this.parkings.splice(index, 1);
+    }
+  }
+
+  calculateFee(p: Parking): number {
+    const diffInMilis = Date.now() - p.date.getTime();
+    const diffInHours = Math.ceil(diffInMilis / (1000 * 60 * 60));
+    return diffInHours * this.hourlyFee;
+  }
+
+  calculateCut(fee: number): number {
+    return fee * this.cutRate;
   }
 }

@@ -22,7 +22,7 @@ export class HttpService {
 
   getCashAmount(): Promise<number> {
     return new Promise<number>((resolve, reject) => {
-      resolve(58400);
+      resolve(0);
     });
   }
 
@@ -30,27 +30,73 @@ export class HttpService {
     return new Promise<Parking[]>((resolve, reject) => {
       resolve([
         {
+          id: 1,
           name: "Laci",
           email: "laci@abc.hu",
-          date: new Date(2019, 2, 18, 9, 30, 15),
+          date: new Date(2019, 2, 11, 9, 30, 15),
           plate: "ABC-123"
         },
         {
+          id: 2,
           name: "Juli",
           email: "juli@abc.hu",
-          date: new Date(2019, 2, 18, 10, 15, 26),
+          date: new Date(2019, 2, 11, 10, 15, 26),
           plate: "DEF-567"
         },
         {
+          id: 3,
           name: "Béla",
           email: "bela@abc.hu",
-          date: new Date(2019, 2, 19, 11, 40, 38),
+          date: new Date(2019, 2, 12, 11, 40, 38),
           plate: "GHI-891"
         },
         {
+          id: 4,
           name: "Piri",
           email: "pirike@abc.hu",
-          date: new Date(2019, 2, 19, 9, 28, 11),
+          date: new Date(2019, 2, 12, 9, 28, 11),
+          plate: "JKL-234"
+        },
+        {
+          id: 5,
+          name: "Piri",
+          email: "pirike@abc.hu",
+          date: new Date(2019, 2, 12, 9, 28, 11),
+          plate: "JKL-234"
+        },
+        {
+          id: 6,
+          name: "Piri",
+          email: "pirike@abc.hu",
+          date: new Date(2019, 2, 12, 9, 28, 11),
+          plate: "JKL-234"
+        },
+        {
+          id: 7,
+          name: "Piri",
+          email: "pirike@abc.hu",
+          date: new Date(2019, 2, 12, 9, 28, 11),
+          plate: "JKL-234"
+        },
+        {
+          id: 8,
+          name: "Piri",
+          email: "pirike@abc.hu",
+          date: new Date(2019, 2, 12, 9, 28, 11),
+          plate: "JKL-234"
+        },
+        {
+          id: 9,
+          name: "Piri",
+          email: "pirike@abc.hu",
+          date: new Date(2019, 2, 12, 9, 28, 11),
+          plate: "JKL-234"
+        },
+        {
+          id: 10,
+          name: "Piri",
+          email: "pirike@abc.hu",
+          date: new Date(2019, 2, 12, 9, 28, 11),
           plate: "JKL-234"
         }
       ]);
