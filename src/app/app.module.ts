@@ -2,17 +2,22 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, LOCALE_ID } from "@angular/core";
 import { registerLocaleData } from "@angular/common";
 import localeHu from "@angular/common/locales/hu";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatFormFieldModule,
+  MatInputModule,
   MatSelectModule,
   MatButtonModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from "@angular/material";
 import { NgxQRCodeModule } from "ngx-qrcode2";
 import { NgxPrintModule } from "ngx-print";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -44,15 +49,21 @@ registerLocaleData(localeHu);
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatSelectModule,
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
     NgxQRCodeModule,
-    NgxPrintModule
+    NgxPrintModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: "hu" }],
-  entryComponents: [ViewParkingDialogComponent],
+  entryComponents: [ViewParkingDialogComponent, AddParkingDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
