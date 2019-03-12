@@ -1,16 +1,37 @@
 table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 th {
   border-bottom: 1px solid lightgray;
   width: 20%;
+  font-size: 20px;
+  margin-bottom: 5px;
 
   &:hover {
-    cursor: pointer;
+    cursor: default;
+  }
+}
+
+tbody {
+
+  tr:hover {
+    background-color: darkgray;
+    transition: ease .3s;
+    cursor: default;
   }
 }
 
 td {
+  padding: 20px 0;
   text-align: center;
+
+  &:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  &:last-child {
+    border-radius: 0 8px 8px 0;
+  }
 }

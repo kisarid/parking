@@ -9,14 +9,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let p of parkings" (click)="openDetailsDialog(p)">
-      <td>{{ p.name }}</td>
-      <td>{{ p.email }}</td>
-      <td>{{ p.date | date:"yyyy-mm-dd HH:mm:ss" }}</td>
-      <td>{{ p.plate }}</td>
-      <td><button>Távozás</button></td>
+    <tr *ngFor="let p of parkings">
+      <td (click)="openDetailsDialog(p)">{{ p.name }}</td>
+      <td (click)="openDetailsDialog(p)">{{ p.email }}</td>
+      <td (click)="openDetailsDialog(p)">{{ p.date | date:"yyyy-MM-dd HH:mm:ss" }}</td>
+      <td (click)="openDetailsDialog(p)">{{ p.plate }}</td>
+      <td><button (click)="leaveCar(p)">Távozás</button></td>
     </tr>
-    <tr *ngIf="parkings.length === 0">
+    <tr *ngIf="noCarsInLot">
+      <td colspan=5>Jelenleg üres a parkoló.</td>
+    </tr>
+    <tr *ngIf="parkings.length === 0 && !noCarsInLot">
       <td colspan=5>Nem található a feltételeknek megfelelő parkolás.</td>
     </tr>
   </tbody>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { MatDialog } from "@angular/material";
 
 import { Parking } from "src/app/interfaces/parking";
@@ -11,9 +11,13 @@ import { ViewParkingDialogComponent } from "../view-parking-dialog/view-parking-
 })
 export class ParkingTableComponent implements OnInit {
   @Input() parkings: Parking[];
+  @Input() noCarsInLot: boolean;
   sortedBy: string;
+  @Output() leaveEmitter: EventEmitter<Parking>;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) {
+    this.leaveEmitter = new EventEmitter();
+  }
 
   ngOnInit() {}
 
@@ -32,9 +36,13 @@ export class ParkingTableComponent implements OnInit {
   }
 
   openDetailsDialog(selectedParking: Parking): void {
-    const dialogRef = this.dialog.open(ViewParkingDialogComponent, {
+    this.dialog.open(ViewParkingDialogComponent, {
       width: "250px",
       data: selectedParking
     });
+  }
+
+  leaveCar(p: Parking): void {
+    this.leaveEmitter.emit(p);
   }
 }
