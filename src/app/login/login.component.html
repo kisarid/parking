@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="login-box">
-    <div class="title">Üdvözöllek a VIP Parkolóban!</div>
+  <div class="title">Üdvözöllek a VIP Parkolóban!</div>
+  <div class="content">
     <mat-form-field>
       <mat-select id="user-select" placeholder="Kérlek, válassz felhasználót!">
         <mat-option *ngFor="let attendant of attendants" value="attendant.name" (click)="selectAttendant(attendant)">{{
