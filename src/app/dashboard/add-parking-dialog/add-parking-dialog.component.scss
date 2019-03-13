@@ -1,9 +1,10 @@
 mat-form-field {
   width: 100%;
+}
 
-  input {
-    cursor: default;
-  }
+#date,
+#time {
+  cursor: default;
 }
 
 .mat-dialog-actions {

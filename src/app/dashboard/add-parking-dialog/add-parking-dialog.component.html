@@ -13,15 +13,16 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input #date placeholder="Dátum" [max]="maxDate" [matDatepicker]="datepicker" [value]="maxDate" readonly matInput>
+      <input id="date" #date placeholder="Dátum" [max]="maxDate" [matDatepicker]="datepicker" [value]="maxDate"
+        readonly matInput>
       <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
       <mat-datepicker #datepicker></mat-datepicker>
     </mat-form-field>
 
     <ng-container>
       <mat-form-field>
-        <input #time placeholder="Időpont" [ngxTimepicker]="timepicker" [disableClick]="true" [max]="maxDate" [format]="24"
-          [value]="maxDate" readonly matInput>
+        <input id="time" #time placeholder="Időpont" [ngxTimepicker]="timepicker" [disableClick]="true" [max]="maxDate"
+          [format]="24" [value]="maxDate" readonly matInput>
         <ngx-material-timepicker-toggle matSuffix [for]="timepicker">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="24px"
             ngxMaterialTimepickerToggleIcon>
