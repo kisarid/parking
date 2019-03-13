@@ -1,10 +1,19 @@
 <table>
   <thead>
-    <tr>
-      <th (click)="sort('name')">Név</th>
-      <th (click)="sort('email')">Email</th>
-      <th (click)="sort('date')">Parkolás kezdete</th>
-      <th (click)="sort('plate')">Rendszám</th>
+    <tr class="sub-header">
+      <th (click)="sort('name')"><span>
+          Név<i class="fas" [ngClass]="{'fa-angle-down': !isReverseSorted, 'fa-angle-up':isReverseSorted}" [ngStyle]="{display: checkSort('name')}"></i>
+        </span></th>
+      <th (click)="sort('email')"><span>
+          Email<i class="fas" [ngClass]="{'fa-angle-down': !isReverseSorted, 'fa-angle-up':isReverseSorted}" [ngStyle]="{display: checkSort('email')}"></i>
+        </span></th>
+      <th (click)="sort('date')"><span>
+          Érkezés<i class="fas" [ngClass]="{'fa-angle-down': !isReverseSorted, 'fa-angle-up':isReverseSorted}"
+            [ngStyle]="{display: checkSort('date')}"></i>
+        </span></th>
+      <th (click)="sort('plate')"><span>Rendszám<i class="fas" [ngClass]="{'fa-angle-down': !isReverseSorted, 'fa-angle-up':isReverseSorted}"
+            [ngStyle]="{display: checkSort('plate')}"></i>
+        </span></th>
       <th></th>
     </tr>
   </thead>
@@ -14,7 +23,7 @@
       <td (click)="openDetailsDialog(p)">{{ p.email }}</td>
       <td (click)="openDetailsDialog(p)">{{ p.date | date:"yyyy-MM-dd HH:mm:ss" }}</td>
       <td (click)="openDetailsDialog(p)">{{ p.plate }}</td>
-      <td><button mat-stroked-button (click)="leaveCar(p)">Távozás</button></td>
+      <td><button mat-stroked-button (click)="leaveCar(p)"><span><i class="fas fa-arrow-alt-circle-left"></i>Távozás</span></button></td>
     </tr>
     <tr *ngIf="noCarsInLot">
       <td colspan=5>Jelenleg üres a parkoló.</td>

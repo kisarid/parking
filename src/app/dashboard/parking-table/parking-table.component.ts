@@ -13,25 +13,28 @@ export class ParkingTableComponent implements OnInit {
   @Input() parkings: Parking[];
   @Input() noCarsInLot: boolean;
   sortedBy: string;
+  isReverseSorted: boolean;
   @Output() leaveEmitter: EventEmitter<Parking>;
 
   constructor(private dialog: MatDialog) {
     this.leaveEmitter = new EventEmitter();
+    this.isReverseSorted = false;
   }
 
   ngOnInit() {}
 
   sort(by: string) {
-    if (this.sortedBy === by) {
+    if (this.sortedBy === by && !this.isReverseSorted) {
       this.parkings.sort((a, b) => {
         return a[by] > b[by] ? -1 : a[by] < b[by] ? 1 : 0;
       });
-      this.sortedBy = "";
+      this.isReverseSorted = true;
     } else {
       this.parkings.sort((a, b) => {
         return a[by] > b[by] ? 1 : a[by] < b[by] ? -1 : 0;
       });
       this.sortedBy = by;
+      this.isReverseSorted = false;
     }
   }
 
@@ -44,5 +47,9 @@ export class ParkingTableComponent implements OnInit {
 
   leaveCar(p: Parking): void {
     this.leaveEmitter.emit(p);
+  }
+
+  checkSort(header: string): string {
+    return header === this.sortedBy ? "inline" : "none";
   }
 }
