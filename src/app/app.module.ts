@@ -19,6 +19,7 @@ import {
 import { NgxQRCodeModule } from "ngx-qrcode2";
 import { NgxPrintModule } from "ngx-print";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
+import { ChartModule } from "angular-highcharts";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -62,7 +63,8 @@ registerLocaleData(localeHu);
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    NgxMaterialTimepickerModule.forRoot()
+    NgxMaterialTimepickerModule.forRoot(),
+    ChartModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "hu" }],
   entryComponents: [ViewParkingDialogComponent, AddParkingDialogComponent],
