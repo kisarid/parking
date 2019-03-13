@@ -20,12 +20,15 @@ import { ViewParkingDialogComponent } from "./view-parking-dialog/view-parking-d
   styleUrls: ["./dashboard.component.scss"]
 })
 export class DashboardComponent implements OnInit {
+  today = new Date(Date.now());
+  clock = Date.now();
   attendant: Attendant;
   cash: number;
   numberOfFilledSpots: number;
   @Output() parkings: Parking[];
   filteredParkings: Parking[];
   @ViewChild("filter") filter: ElementRef;
+  @Output() selectedDate: Date = new Date(Date.now());
 
   constructor(
     private parkingService: ParkingService,
@@ -46,6 +49,9 @@ export class DashboardComponent implements OnInit {
     });
     this.attendant = { name: "Dénes", cut: 0 };
     this.parkingService.activeAttendant = this.attendant;
+    setInterval(() => {
+      this.clock = Date.now();
+    }, 1000);
   }
 
   filterParkings(): void {
@@ -113,5 +119,10 @@ export class DashboardComponent implements OnInit {
         });
       }
     });
+  }
+
+  logout(): void {
+    this.parkingService.setActiveAttendant(null);
+    this.router.navigateByUrl("login");
   }
 }

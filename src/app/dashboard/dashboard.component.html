@@ -3,6 +3,10 @@
   <div class="header">
     <div class="title">Üdvözlünk, {{ attendant.name }}!</div>
   </div>
+  <div class="logout" style="grid-row: 1">
+    <div class="clock">{{ clock | date: "HH:mm:ss" }}</div>
+    <button mat-stroked-button (click)="logout()"><span><i class="fas fa-sign-out-alt"></i>Kijelentkezés</span></button>
+  </div>
 
   <div class="info-header sub-header">
     <div class="cash-display">Kassza</div>
@@ -11,14 +15,22 @@
   </div>
   <div class="info">
     <div class=cash>{{ cash | number }} Ft</div>
-    <div class="cut">{{ attendant.cut }} Ft</div>
+    <div class="cut">{{ attendant.cut | number }} Ft</div>
     <div class="lot">{{ 10 - numberOfFilledSpots }}</div>
   </div>
 
   <div class="chart-header sub-header">
     <div>Forgalmi statisztikák</div>
   </div>
-  <div class="chart"></div>
+  <div class="chart">
+    <mat-form-field>
+      <input id="date" placeholder="Válassz dátumot!" [max]="today" [value]="today" [(ngModel)]="selectedDate"
+        [matDatepicker]="datepicker" readonly matInput>
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+    <app-hourly-chart *ngIf="parkings" [data]="parkings" [date]="selectedDate"></app-hourly-chart>
+  </div>
 
   <div class="filter">
     <span>
