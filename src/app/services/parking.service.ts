@@ -1,9 +1,7 @@
-import { Injectable, Output } from "@angular/core";
+import { Injectable } from "@angular/core";
 
 import { Attendant, Parking } from "../interfaces/parking";
 import { HttpService } from "./http.service";
-import { EventEmitter } from "protractor";
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +13,6 @@ export class ParkingService {
   parkings: Parking[];
   hourlyFee = 500;
   cutRate = 0.1;
-  changeEmitter;
 
   constructor(private http: HttpService) {}
 

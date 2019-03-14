@@ -38,17 +38,15 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // if (this.parkingService.activeAttendant) {
-    //   this.attendant = this.parkingService.activeAttendant;
-    // } else {
-    //   this.router.navigateByUrl("login");
-    // }
+    if (this.parkingService.activeAttendant) {
+      this.attendant = this.parkingService.activeAttendant;
+    } else {
+      this.router.navigateByUrl("login");
+    }
     this.parkingService.loadDashboardData().then(() => {
       this.parkings = this.parkingService.parkings;
       this.refreshData();
     });
-    this.attendant = { name: "Dénes", cut: 0 };
-    this.parkingService.activeAttendant = this.attendant;
     setInterval(() => {
       this.clock = Date.now();
     }, 1000);
@@ -80,6 +78,7 @@ export class DashboardComponent implements OnInit {
   }
 
   refreshData(): void {
+    this.parkings = [].concat(this.parkingService.parkings);
     this.numberOfFilledSpots = this.parkings.length;
     this.cash = this.parkingService.cash;
     this.filterParkings();
